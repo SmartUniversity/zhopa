@@ -16,7 +16,7 @@
 				<a href="index.html"> <div class="logo"> </div> </a>
 				
 				
-				<div class="userpanel"> <a href="s-up"> Регистрация </a></div>
+				<div class="userpanel"> <a href="create_ev"> create event </a></div>
 				<div class="userpanel"> <a href="sign-in.html"> Вход </a>  </div>
 			</div>
 		</div>

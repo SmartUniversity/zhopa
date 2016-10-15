@@ -6,6 +6,16 @@
 package com.mkyong.customer.dao.impl;
 
 import com.mkyong.customer.dao.UserDAO;
+import com.mkyong.customer.model.Customer;
+import com.mkyong.customer.model.CustomerRowMapper;
+import com.mkyong.customer.model.Users;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
 /**
@@ -35,6 +45,22 @@ public class UsersDAO extends JdbcDaoSupport implements UserDAO {
             cardNum,
             pass
         });
+    }
+    
+    public void insertEvent(Integer userId, String ne, String desc, String c, String d1, String d2){
+        
+        String sql = "INSERT INTO events " +
+                     "(id_user,name,photo,text,start_date,end_date,cost) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        try {
+            Date thedate1 = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH).parse(d1);
+            Date thedate2 = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH).parse(d2);
+       
+        getJdbcTemplate().update(sql, new Object[] { 
+            6, ne, "photo", desc, thedate1, thedate2, c
+        });
+        } catch (ParseException ex) {
+            Logger.getLogger(UsersDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

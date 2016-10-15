@@ -219,6 +219,17 @@ html, body{
 	margin-bottom: 170px;
 }
 
+.addeventform{
+	margin: 0 auto;
+	width: 350px;
+	height: 465px;
+	background-color: white;
+	box-shadow: 0 0 15px rgba(0,0,0,0.19);
+	border-radius: 7px;
+	margin-top: 150px;
+	margin-bottom: 170px;
+}
+
 .signintextlabel{
 	width: 307px;
 	float: left;
@@ -286,6 +297,21 @@ input[type="file"] {
     margin-top: 15px;
 }
 
+input[type="date"] {
+    margin-left: 20px;
+    margin-top: 15px;
+	height: 45px;
+    width: 307px;
+	background-color: rgba(239, 239, 239, 0.23);
+    color: #424242;
+    padding: 2px 16px;
+    font-size: 12px;
+    border-radius: 4px;
+    border: 1px solid #d0d0d0;
+    cursor: pointer;
+    box-sizing: border-box
+}
+
 .eventfull{
 	width: 693px;
 	min-height: 500px;
@@ -337,145 +363,8 @@ input[type="file"] {
 
 .eventfullright{
 	float: right;
-	margin-top: 20px;
-	width: 43%;
-	min-height: 200px;
+	width: 40%;
+	min-width: 200px;
+	background-color: rgba(181, 117, 163, 0.21);
 	border-left: 1px solid rgba(0, 0, 0, 0.15);
 }
-
-.eventfullpoint{
-	height: 30px;
-	width: 100%;
-}
-
-.eventfullpoint h4{
-	margin: 0;
-	padding: 0;
-	float: right;
-	width: 260px;
-	line-height: 19px;
-	font-family: Tahoma;
-	font-size: 12px;
-	font-weight: 100;
-	color: #5d5d5d;
-}
-
-#universitylogo{
-	float: left;
-	margin-left: 10px;
-	height: 18px;
-	width: 18px;
-	background-image: url(../img/university.png);
-	background-size:  18px;
-}
-
-#usericon{
-	float: left;
-	margin-left: 10px;
-	height: 18px;
-	width: 18px;
-	background-image: url(../img/user.png);
-	background-size:  18px;
-}
-
-#calendaricon{
-	float: left;
-	margin-left: 10px;
-	height: 18px;
-	width: 18px;
-	background-image: url(../img/calender.png);
-	background-size:  18px;
-}
-
-#timericon{
-	float: left;
-	margin-left: 10px;
-	height: 18px;
-	width: 18px;
-	background-image: url(../img/timer.png);
-	background-size:  18px;
-}
-
-#likeicon{
-	float: left;
-	margin-left: 10px;
-	height: 17px;
-	width: 20px;
-	background-image: url(../img/like.png);
-	background-size:  20px;
-}
-
-#usdicon{
-	float: left;
-	margin-left: 10px;
-	height: 20px;
-	width: 20px;
-	background-image: url(../img/usd.png);
-	background-size:  20px;
-}
-
-.comentsitem{
-	float: left;
-	width: 100%;
-	padding-left: 20px;
-	box-sizing: border-box;
-	color: #555555;
-	height: 30px;
-	line-height: 35px;
-	border-top: 1px solid #e9e9e9;
-}
-
-.commentblockfull{
-	width: 400px;
-	min-height: 250px;
-	overflow: hidden;
-	padding-left: 20px;
-	box-sizing: border-box;
-}
-
-.comment{
-	float: left;
-	margin-top: 16px;
-	width: 100%;
-	min-height: 60px;
-}
-
-.commentuserpic{
-
-	height: 34px;
-	width: 34px;
-	border-radius: 17px;
-	border: 1px solid #ececec;
-}
-
-.commentnamedate{
-	float: right;
-	height: 34px;
-	width: 335px;
-}
-
-.commentname{
-	width: 100%;
-	height: 20px;
-	color: #555555;
-	font-size: 12px;
-}
-
-.commentdate{
-	width: 100%;
-	height: 14px;
-	color: #767676;
-	font-size: 10px;
-}
-
-.commenttext{
-
-	line-height: 17px;
-	width: 100%;
-	min-height: 30px;
-	color: #767676;
-	font-size: 12px;
-	margin-bottom: 7px;
-}
-
-

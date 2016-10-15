@@ -19,6 +19,7 @@ import java.math.RoundingMode;
 import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
@@ -38,6 +39,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -70,12 +72,34 @@ public class ControllerMain {
         ApplicationContext context = 
     		new ClassPathXmlApplicationContext("Spring-Module.xml");
          
-         UserDAO test = (UserDAO) context.getBean("userDAO");
+        UserDAO test = (UserDAO) context.getBean("userDAO");
         
         modelAndView.addObject("myvalue", test.findTotalCustomer());
         modelAndView.setViewName("sign-in");
         return modelAndView;
         
+    }
+    
+    @RequestMapping(value="/create_ev", method=RequestMethod.GET)
+    public ModelAndView crEv( HttpServletResponse response){
+        ModelAndView modelAndView = new ModelAndView();
+        
+        modelAndView.setViewName("add-event");
+        return modelAndView;   
+    }
+    
+    @RequestMapping(value="/create_ev_act", method=RequestMethod.POST)
+    public ModelAndView crEvAct( HttpServletResponse response, @CookieValue(value="userid", defaultValue="87679") Integer userId, @RequestParam("ne") String ne, @RequestParam("d1") String d1, @RequestParam("d2") String d2, @RequestParam("c") String c, @RequestParam("desc") String desc, @RequestParam("f") MultipartFile file){
+        ModelAndView modelAndView = new ModelAndView();
+        
+        ApplicationContext context = 
+    		new ClassPathXmlApplicationContext("Spring-Module.xml");
+        
+        UserDAO test = (UserDAO) context.getBean("userDAO");
+        test.insertEvent(userId, ne, desc, c, d1, d2);
+        
+        modelAndView.setViewName("index");
+        return modelAndView;   
     }
     
     @RequestMapping(value="/reg", method=RequestMethod.POST)
@@ -85,7 +109,7 @@ public class ControllerMain {
         ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Module.xml");
         UserDAO test = (UserDAO) context.getBean("userDAO");
         
-        test.insert("new", "new", 1, "photo", card_n, pass);
+        test.insert("Oleg", "Tsarev", 1, "photo", card_n, pass);
         
         modelAndView.setViewName("index");
         return modelAndView;
@@ -100,9 +124,6 @@ public class ControllerMain {
         return modelAndView;
         
     }
-
-
-
 
     private Object ServletContext() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
