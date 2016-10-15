@@ -1,0 +1,133 @@
+CREATE TABLE `smartuniversity`.`users` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `user_name` VARCHAR(45) NOT NULL,
+  `user_surname` VARCHAR(45) NOT NULL,
+  `id_univ` INT NOT NULL,
+  `photo` VARCHAR(200) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC));
+
+
+CREATE TABLE `smartuniversity`.`events` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `id_user` INT NOT NULL,
+  `name` VARCHAR(45) NOT NULL,
+  `photo` VARCHAR(200) NOT NULL,
+  `text` VARCHAR(2000) NOT NULL,
+  `start_date` DATETIME NOT NULL,
+  `end_date` DATETIME NOT NULL,
+  `cost` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC));
+
+
+CREATE TABLE `smartuniversity`.`likes` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `id_event` INT NOT NULL,
+  `id_user` INT NOT NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE `smartuniversity`.`comments` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `id_event` INT NOT NULL,
+  `id_user` INT NOT NULL,
+  `date` DATETIME NOT NULL,
+  `text` VARCHAR(500) NOT NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE `smartuniversity`.`university` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `id_city` INT NOT NULL,
+  PRIMARY KEY (`id`));
+
+
+CREATE TABLE `smartuniversity`.`city` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC));
+
+CREATE TABLE `smartuniversity`.`money` (
+  `id_event` INT NOT NULL ,
+  `card_number` VARCHAR(45) NOT NULL,
+  `supp_money` INT NOT NULL);
+
+
+ALTER TABLE `smartuniversity`.`users` 
+ADD INDEX `id_univ_idx` (`id_univ` ASC);
+ALTER TABLE `smartuniversity`.`users` 
+ADD CONSTRAINT `id_univ`
+  FOREIGN KEY (`id_univ`)
+  REFERENCES `smartuniversity`.`university` (`id`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE;
+
+
+
+ALTER TABLE `smartuniversity`.`events` 
+ADD INDEX `id_user_idx` (`id_user` ASC);
+ALTER TABLE `smartuniversity`.`events` 
+ADD CONSTRAINT `id_user`
+  FOREIGN KEY (`id_user`)
+  REFERENCES `smartuniversity`.`users` (`id`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE;
+
+
+
+ALTER TABLE `smartuniversity`.`likes` 
+ADD INDEX `id_eventsdfs_idx` (`id_event` ASC);
+ALTER TABLE `smartuniversity`.`likes` 
+ADD CONSTRAINT `id_event`
+  FOREIGN KEY (`id_event`)
+  REFERENCES `smartuniversity`.`events` (`id`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE;
+
+
+ALTER TABLE `smartuniversity`.`likes` 
+ADD CONSTRAINT `id_userlike`
+  FOREIGN KEY (`id_user`)
+  REFERENCES `smartuniversity`.`users` (`id`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE;
+
+
+ALTER TABLE `smartuniversity`.`comments` 
+ADD INDEX `id_commentevent_idx` (`id_event` ASC),
+ADD INDEX `id_commentuser_idx` (`id_user` ASC);
+ALTER TABLE `smartuniversity`.`comments` 
+ADD CONSTRAINT `id_commentevent`
+  FOREIGN KEY (`id_event`)
+  REFERENCES `smartuniversity`.`events` (`id`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE,
+ADD CONSTRAINT `id_commentuser`
+  FOREIGN KEY (`id_user`)
+  REFERENCES `smartuniversity`.`users` (`id`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE;
+
+
+
+ALTER TABLE `smartuniversity`.`university` 
+ADD INDEX `id_univercitycity_idx` (`id_city` ASC);
+ALTER TABLE `smartuniversity`.`university` 
+ADD CONSTRAINT `id_univercitycity`
+  FOREIGN KEY (`id_city`)
+  REFERENCES `smartuniversity`.`city` (`id`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE;
+
+
+
+ALTER TABLE `smartuniversity`.`money` 
+ADD INDEX `id_moneyevent_idx` (`id_event` ASC);
+ALTER TABLE `smartuniversity`.`money` 
+ADD CONSTRAINT `id_moneyevent`
+  FOREIGN KEY (`id_event`)
+  REFERENCES `smartuniversity`.`events` (`id`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE;
+
